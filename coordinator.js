@@ -80,3 +80,20 @@ function status(msg, workerId) {
 
     document.querySelector(selector).textContent = prefix + msg
 }
+
+// log function
+function log(msg, workerId) {
+    var prefix = workerId != null
+        ? "Worker " + workerId + " says: "
+        : "Main page says: "
+
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(document.createTextNode(prefix + msg));
+    fragment.appendChild(document.createElement('br'));
+
+    var selector = workerId != null
+        ? "#worker" + workerId + "log"
+        : "#mainlog"
+
+    document.querySelector(selector).appendChild(fragment)
+}
