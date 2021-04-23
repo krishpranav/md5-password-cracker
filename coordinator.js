@@ -69,3 +69,14 @@ function addCommasToInteger(x) {
     return x
 }
 
+function status(msg, workerId) {
+    var prefix = workerId != null
+        ? "Worker " + workerId + " status: "
+        : "Main page status: "
+
+    var selector = workerId != null
+        ? "#worker" + workerId
+        : "#main"
+
+    document.querySelector(selector).textContent = prefix + msg
+}
