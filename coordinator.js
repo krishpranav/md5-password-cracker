@@ -55,3 +55,17 @@ for (var i = 0; i < numWorkers; i++) {
     worker.postMessage({ cmd: "performCrack", data: {start: i, hop: numWorkers} })
 }
 
+status("Searching for password match for hash '54d75975e615f0638b6181592a4d929f'.")
+log("Testing uppercase, lowercase, and numbers.")
+
+// helper function
+
+function addCommasToInteger(x) {
+    x = parseInt(x) + ''
+    var rgx = /(\d+)(\d{3})/
+    while (rgx.test(x)) {
+        x = x.replace(rgx, '$1' + ',' + '$2')
+    }
+    return x
+}
+
