@@ -40,4 +40,18 @@ for (var i = 0; i < numWorkers; i++) {
                 log("Main page doesn/t understand command " + e.data.cmd)
         }
     })
+
+    // error handle
+    worker.addEventListener('error', function(e){
+        log(['ERROR: Line', e.lineno, 'in', e.filename, ':', e.message].join(''))
+    })
+
+    // set worker settings
+    worker.postMessage({ cmd: "setWorkerId", data: i })
+    worker.postMessage({ cmd: "setMaxPassLength", data: 5 })
+    worker.postMessage({ cmd: "setPassToCrack", data: "54d75975e615f0638b6181592a4d929f" })
+
+    // start worker
+    worker.postMessage({ cmd: "performCrack", data: {start: i, hop: numWorkers} })
 }
+
