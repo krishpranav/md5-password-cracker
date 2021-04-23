@@ -95,3 +95,23 @@ function crack(options) {
 
 }
 
+this.addEventListener('message', function(e){
+
+    switch (e.data.cmd) {
+        case "setWorkerId":
+            workerId = e.data.data
+            break
+
+        case "setMaxPassLength":
+            maxPassLength = e.data.data
+            break
+
+        case "setPassToCrack":
+            passToCrack = e.data.data
+            break
+
+        default:
+            this.postMessage({ cmd: "log", data: "Worker doesn't understand command " + e.data.cmd })
+            break
+    }
+})
